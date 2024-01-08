@@ -83,11 +83,48 @@ Others file like layout which can used commonly
         - page.jsx *Route Files*
 
 ```
-Note: While creating next app it asked us to include src directory or not. For better practice always include src directory as you can have components, library folder there and inside app directory you can have routes. It would be easy to differentiate 
+Note: While creating next app it asked us to include src directory or not. For better 
+practice always include src directory as you can have components, library folder there 
+and inside app directory you can have routes. It would be easy to differentiate 
 ```
 
 > Instead Of Using <a><a/> Tag We Can Use <Link><Link/> Tag In Next Js 
 
+### Styles
+
+Global CSS are written in the globals.css file. Here we can create and use variable in css file just like scss. 
+
+```
+:root{
+    --bgColor: #000000;
+}
+
+.container{
+    color: var(--bgColor);
+}
+```
+
+We Can Also Have Separate CSS file for separate components. But there is a catch here we use (filename).module.css just to avoid collision of parent children css file.
+
+- Navbar
+    - Navbar.jsx
+    - navbar.module.css
+
+> CSS is written as usual but there is difference in importing & calling the class
+
+```
+import styles from "./navbar.module.css"
+
+<div className={styles.container}>
+    CONTENT
+</div>
+```
+
+## In Build Js Functions Compare To React
+
+| React Js      | Next Js                |
+| :---          |                   ---: |
+| useLocation();| usePathname();         |
 
 ## Some Doubts While Learning
 
@@ -95,4 +132,4 @@ Note: While creating next app it asked us to include src directory or not. For b
 - [Experimental_Featured]
 
 ### Check Point
-32:00
+59:30

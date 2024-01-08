@@ -1,6 +1,14 @@
+"use client";
+
 import Link from "next/link"
+import styles from "./navbar.module.css"
+import { usePathname } from "next/navigation"
+import { useState } from "react";
 
 const Navbar = () => {
+
+    const pathname = usePathname();
+    const [open ,setOpen] = useState(false);
 
     const links = [
         {
@@ -21,12 +29,34 @@ const Navbar = () => {
         },   
     ]
 
+    //TEMPORARY
+    const session = true;
+    const isAdmin = true;
+
   return (
-    <div>
-        <div>Logo</div>
+    <div className={styles.container}>
+        <div className={styles.logo}>Logo</div>
         <div>
             <div>
-                {links.map((e) => <Link href={e.link} key={e.title}>{e.title}</Link>)}
+                <div className={styles.links}>
+                    {links.map((e) => <Link className={`${styles.linkElement} ${pathname === e.link && styles.active}`} href={e.link} key={e.title}>{e.title}</Link>)}
+                    {
+                        session ?
+                            <> 
+                            {isAdmin && <Link className={`${styles.linkElement} ${pathname === "/admin" && styles.active}`} href={"/admin"}>Admin</Link>}
+                            <button className={styles.logout}>Logout</button>
+                            </> :
+                        <Link className={`${styles.linkElement} ${pathname === "/login" && styles.active}`} href={"/login"}>Login</Link>    
+                    }
+                </div>
+                <button onClick={()=>{setOpen(prev => !prev)}} className={styles.menuButton}>Menu</button>
+                {open && (
+                    <div className={styles.mobileLinks}>
+                    {links.map((e) => (
+                        <Link className={`${styles.linkElement} ${pathname === e.link && styles.active}`} href={e.link} key={e.title}>{e.title}</Link>
+                    ))}
+                    </div>
+                )}
             </div>
         </div>
     </div>
