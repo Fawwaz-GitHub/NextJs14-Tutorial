@@ -4,6 +4,7 @@ import Link from "next/link"
 import styles from "./navbar.module.css"
 import { usePathname } from "next/navigation"
 import { useState } from "react";
+import Image from "next/image";
 
 const Navbar = () => {
 
@@ -35,7 +36,7 @@ const Navbar = () => {
 
   return (
     <div className={styles.container}>
-        <div className={styles.logo}>Logo</div>
+        <Link href={"/"} className={styles.logo}>Logo</Link>
         <div>
             <div>
                 <div className={styles.links}>
@@ -49,7 +50,7 @@ const Navbar = () => {
                         <Link className={`${styles.linkElement} ${pathname === "/login" && styles.active}`} href={"/login"}>Login</Link>    
                     }
                 </div>
-                <button onClick={()=>{setOpen(prev => !prev)}} className={styles.menuButton}>Menu</button>
+                <Image src="/menu.png" alt="" height={25} width={25} className={styles.menuButton} onClick={()=>{setOpen(prev => !prev)}}/>
                 {open && (
                     <div className={styles.mobileLinks}>
                     {links.map((e) => (

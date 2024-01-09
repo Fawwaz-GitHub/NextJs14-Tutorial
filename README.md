@@ -120,6 +120,26 @@ import styles from "./navbar.module.css"
 </div>
 ```
 
+### Image
+
+In Nextjs we dont use img tag instead of the we use Image tag from next js itself which provides better optimization. Nextjs first stores the image in cache then calls the particular image. 
+
+In Nextjs we can't use external Url for image. If we want to we should allow the specific at next.config.js
+
+```
+const nextConfig = {
+    images:
+    {
+        remotePatterns:[
+          {
+            protocol: 'https',
+            hostname: "images.pexels.com"
+          }
+        ]
+    },
+}
+```
+
 ## In Build Js Functions Compare To React
 
 | React Js      | Next Js                |
@@ -132,4 +152,4 @@ import styles from "./navbar.module.css"
 - [Experimental_Featured]
 
 ### Check Point
-59:30
+01:48:30
