@@ -88,8 +88,6 @@ practice always include src directory as you can have components, library folder
 and inside app directory you can have routes. It would be easy to differentiate 
 ```
 
-> Instead Of Using <a><a/> Tag We Can Use <Link><Link/> Tag In Next Js 
-
 ### Styles
 
 Global CSS are written in the globals.css file. Here we can create and use variable in css file just like scss. 
@@ -124,7 +122,7 @@ import styles from "./navbar.module.css"
 
 In Nextjs we dont use img tag instead of the we use Image tag from next js itself which provides better optimization. Nextjs first stores the image in cache then calls the particular image. 
 
-In Nextjs we can't use external Url for image. If we want to we should allow the specific at next.config.js
+In Nextjs we can't use external Url for image. If we want to we should allow the specific at next.config.js then we can proceed to use it.
 
 ```
 const nextConfig = {
@@ -140,16 +138,58 @@ const nextConfig = {
 }
 ```
 
-## In Build Js Functions Compare To React
+### Rendering
+
+There are basically two types of rendering
+
+1. Client Side Rendering (CSR) - HTML Comes From Server Then It Is Processed 
+2. Server Side Rendering (SSR) - Processed HTML Comes From Server
+
+For Client Pages (User Activity) we should always call "use client" at the top. But by default pages are in "use server" as nextjs uses SSR.
+
+Even if we wrap a parent component as "use client" component outside child. children will always be server component.
+
+Most of the we will encounter Hydration errors. it result from a mismatch between server- and client-rendered markup and differences in component states.
+
+we can prevent this by using
+1. useEffect
+2. mentioning suppressHydrationWarning inside div
+3. by using this import method, 
+>const Component = dynamic(()=>import("./component"),{ ssr: false})
+
+### Navigation
+
+NextJs Provides Navigation 
+
+> import useRouter from "next/navigation"
+
+```
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchQuery();
+```
 
 | React Js      | Next Js                |
 | :---          |                   ---: |
+| navigate()    | router.push("/")       |
+|      -        | router.replace("/")    | // Doesn't Add History To Browser
+|      -        | router.refresh()       | // Refresh The Component
+| navigate(-1)  | router.back()          |
+| navigate(1)   | router.forward()       |
+
+## Functions And Tags Compare To React In NextJs
+
+| React Js      | Next Js                |
+| :---          |                   ---: |
+| <a></a>       | <Link></Link>;         |
+| <img/>        | <Image/>               |
 | useLocation();| usePathname();         |
 
 ## Some Doubts While Learning
 
 - [ESLINT] - Shows Us Potential Error Before Running The Application!
 - [Experimental_Featured]
+- [Hydration_Error]
 
 ### Check Point
-01:48:30
+02:17:25
