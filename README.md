@@ -185,6 +185,38 @@ NextJs Provides Navigation
 | <img/>        | <Image/>               |
 | useLocation();| usePathname();         |
 
+### Data Fetching With API
+
+If A Component Has To Fetch Data Then That Component Should Be Async Function.
+
+After API Is Called It Is Stored In The Cache Of NextJs But We Can Modify It If Certain API Has Frequent Changes Or So
+
+```
+fetch("url", {cache: "force-cache" }) // Be Default
+fetch("url", {cache: "no-store" }) // No Cache To Be Stored
+fetch("url", {next: {revalidate: 3600}}) // Time Period Of Cache
+```
+
+### Suspense
+
+We Can Show Different UI While The Api Is Loading Using Suspense Tag Fallback
+
+### Data Fetching Without API
+
+As NextJs Can Be Connected To DB We Can Directly Fetch Data From DB
+
+There Is No Specific Structure For It But This Is How We Will Be Using It
+
+- Src
+    - lib
+        - utils.js ("To Connect To DB")
+        - data.js ("Query To Get Data From DB")
+        - models.js ("Schemas")
+
+> To Avoid Cache In This
+> import { unstable_noStore as noStore } from "next/cache";
+> call noStore(); as each data.js function        
+
 ## Some Doubts While Learning
 
 - [ESLINT] - Shows Us Potential Error Before Running The Application!
@@ -192,4 +224,4 @@ NextJs Provides Navigation
 - [Hydration_Error]
 
 ### Check Point
-02:17:25
+02:35:30

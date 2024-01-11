@@ -48,6 +48,23 @@
   font-size: 20px;
 }
 
+.avatar{
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.subcontainer{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.texts{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 @media (max-width: 768px) {
   .imgContainer {
     display: none;
