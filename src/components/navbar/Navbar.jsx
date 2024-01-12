@@ -5,6 +5,7 @@ import styles from "./navbar.module.css"
 import { usePathname } from "next/navigation"
 import { useState } from "react";
 import Image from "next/image";
+import { handleLogout } from "@/lib/action";
 
 const Navbar = () => {
 
@@ -45,7 +46,9 @@ const Navbar = () => {
                         session ?
                             <> 
                             {isAdmin && <Link className={`${styles.linkElement} ${pathname === "/admin" && styles.active}`} href={"/admin"}>Admin</Link>}
-                            <button className={styles.logout}>Logout</button>
+                            <form action={handleLogout}>
+                                <button className={styles.logout}>Logout</button>
+                            </form>
                             </> :
                         <Link className={`${styles.linkElement} ${pathname === "/login" && styles.active}`} href={"/login"}>Login</Link>    
                     }

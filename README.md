@@ -177,14 +177,6 @@ NextJs Provides Navigation
 | navigate(-1)  | router.back()          |
 | navigate(1)   | router.forward()       |
 
-## Functions And Tags Compare To React In NextJs
-
-| React Js      | Next Js                |
-| :---          |                   ---: |
-| <a></a>       | <Link></Link>;         |
-| <img/>        | <Image/>               |
-| useLocation();| usePathname();         |
-
 ### Data Fetching With API
 
 If A Component Has To Fetch Data Then That Component Should Be Async Function.
@@ -210,18 +202,124 @@ There Is No Specific Structure For It But This Is How We Will Be Using It
 - Src
     - lib
         - utils.js ("To Connect To DB")
-        - data.js ("Query To Get Data From DB")
+        - data.js ("Query Or Function To Get Data From DB")
         - models.js ("Schemas")
 
 > To Avoid Cache In This
 > import { unstable_noStore as noStore } from "next/cache";
-> call noStore(); as each data.js function        
+> call noStore(); as each data.js function    
+
+### SEO
+
+NextJs Makes SEO Easier As We Can Change Title And Description Of The Page By Content
+
+For Static Page
+```
+export const metadata = {
+  title: {
+    default:"Next.js 14 Homepage",
+    template:"%s | Next.js 14"
+  },
+  description: "Next.js starter app description",
+};
+
+export const metadata = {
+  title: "Contact Page",
+  description: "Contact description",
+};
+```
+
+For Dynamic Page
+```
+export const generateMetadata = async ({ params }) => {
+  const { slug } = params;
+
+  const post = await getPost(slug);
+
+  return {
+    title: post.title,
+    description: post.desc,
+  };
+};
+```
+
+### Server Actions
+
+Server Action When A Data Has To Be Posted Without An API
+
+Always Use "use server" at the top or in the function;
+
+- lib
+    - action.js
+
+### API Router
+
+We Can Also Write API Endpoints In NextJs.
+
+Here Are Some Of The Basic Structure To Use For Different Routing In Src App Api Directory
+
+> Api Would Be Inside App Directory
+
+1. For Basic Route 
+    - route.js ("/")
+
+2. For About Route
+    - about
+        - route.js ("/about")
+
+3. For Nested About Route
+    - about
+        - project
+            - route.js ("/about/project") 
+            
+4. For Dynamic About Route
+    - about
+    - \[id\]
+        - route.js ("/about/123")      
+
+### Authentication
+
+For Authentication We Are Using Next Auth Package Here. We Can Social Authenticate With google, facebook etc.
+
+> npm install next-auth@beta
+
+- lib
+    - auth.js
+
+> OAuth Callback URL - url/api/auth/callback/(github,google)
+
+save client_id in .env
+
+```
+Example For GitHub
+
+import NextAuth from "next-auth"
+import GitHub from "next-auth/providers/github"
+export const { handlers, auth, signIn, signOut } = NextAuth({ 
+    providers: [ GitHub({ 
+        clientId: process.env.GITHUB_ID, 
+        clientSecret: process.env.GITHUB_SECRET 
+    }) ] 
+})
+```
+
+## Functions And Tags Compare To React In NextJs
+
+| React Js      | Next Js                |
+| :---          |                   ---: |
+| <a></a>       | <Link></Link>;         |
+| <img/>        | <Image/>               |
+| useLocation();| usePathname();         |    
+| useEffect();  | revalidatePath("/");   | // Used In Server Action
 
 ## Some Doubts While Learning
 
 - [ESLINT] - Shows Us Potential Error Before Running The Application!
-- [Experimental_Featured]
+- [Experimental_Features]
 - [Hydration_Error]
+- [Random-Token] - openssl rand -base 64 32
+- [OAuth] - Why Do We Need To Create An Account ?
+- [(...Spread.js)] - Why Do We Use This Spread For Pages
 
 ### Check Point
-02:35:30
+03:30:00

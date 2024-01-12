@@ -3,6 +3,17 @@ import styles from "./singlePost.module.css"
 import Image from "next/image"
 import { getPost, getUser } from "@/lib/data"
 
+export const generateMetadata = async ({ params }) => {
+  const { slug } = params;
+
+  const post = await getPost(slug);
+
+  return {
+    title: post.title,
+    description: post.desc,
+  };
+};
+
 const getData = async (slug) => {
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`, { cache: "no-store"})
 
@@ -51,7 +62,7 @@ const SingleBlogPage = async ({ params }) => {
           }
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
-            <span className={styles.detailValue}>{post.date}</span>
+            <span className={styles.detailValue}>{post?.date?.toString().substring(0,10)}</span>
           </div>
         </div>
         <div className={styles.content}>
