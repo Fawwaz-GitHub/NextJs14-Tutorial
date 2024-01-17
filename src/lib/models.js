@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true,
+        // required: true,
         min: 6
     },
     img: {
@@ -57,5 +57,5 @@ const postSchema = new mongoose.Schema({
 }, { timestamp: true })
 
 // We Are First Check If Schema Exists In DB If Not We Are Creating It
-export const User = mongoose.models.User || mongoose.model("User", userSchema);
-export const Post = mongoose.models.Post || mongoose.model("Post", postSchema);
+export const User = mongoose.models?.User || mongoose.model("User", userSchema);
+export const Post = mongoose.models?.Post || mongoose.model("Post", postSchema);

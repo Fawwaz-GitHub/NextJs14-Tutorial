@@ -299,7 +299,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     providers: [ GitHub({ 
         clientId: process.env.GITHUB_ID, 
         clientSecret: process.env.GITHUB_SECRET 
-    }) ] 
+    }) ],
+    callbacks: {
+        //here after signin, signout functionality can be written
+    } 
 })
 ```
 
@@ -322,4 +325,4 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 - [(...Spread.js)] - Why Do We Use This Spread For Pages
 
 ### Check Point
-03:30:00
+03:50:00

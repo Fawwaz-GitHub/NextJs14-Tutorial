@@ -6,8 +6,9 @@ import { usePathname } from "next/navigation"
 import { useState } from "react";
 import Image from "next/image";
 import { handleLogout } from "@/lib/action";
+import { auth } from "@/lib/auth";
 
-const Navbar = () => {
+const Navbar = async () => {
 
     const pathname = usePathname();
     const [open ,setOpen] = useState(false);
@@ -32,7 +33,7 @@ const Navbar = () => {
     ]
 
     //TEMPORARY
-    const session = true;
+    const session = await auth();
     const isAdmin = true;
 
   return (
@@ -43,9 +44,9 @@ const Navbar = () => {
                 <div className={styles.links}>
                     {links.map((e) => <Link className={`${styles.linkElement} ${pathname === e.link && styles.active}`} href={e.link} key={e.title}>{e.title}</Link>)}
                     {
-                        session ?
+                        session?.user ?
                             <> 
-                            {isAdmin && <Link className={`${styles.linkElement} ${pathname === "/admin" && styles.active}`} href={"/admin"}>Admin</Link>}
+                            {session?.user?.isAdmin && <Link className={`${styles.linkElement} ${pathname === "/admin" && styles.active}`} href={"/admin"}>Admin</Link>}
                             <form action={handleLogout}>
                                 <button className={styles.logout}>Logout</button>
                             </form>
