@@ -299,12 +299,21 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     providers: [ GitHub({ 
         clientId: process.env.GITHUB_ID, 
         clientSecret: process.env.GITHUB_SECRET 
-    }) ],
+    }), // Change Or Add Social Provider
+    CredentialsProvider: ({
+        //default signin function
+    })    
+    ],
     callbacks: {
         //here after signin, signout functionality can be written
     } 
 })
 ```
+
+> useFormState - It Is Used To Update Form Based On Form Action
+
+### Middleware
+
 
 ## Functions And Tags Compare To React In NextJs
 
@@ -323,6 +332,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 - [Random-Token] - openssl rand -base 64 32
 - [OAuth] - Why Do We Need To Create An Account ?
 - [(...Spread.js)] - Why Do We Use This Spread For Pages
+- [NEXT_REDIRECT]
 
 ### Check Point
-03:50:00
+04:20:00
