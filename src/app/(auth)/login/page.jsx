@@ -1,3 +1,5 @@
+"use client"
+
 import { handleGithubLogin, login } from "@/lib/action"
 import { auth } from "@/lib/auth"
 import styles from "./login.module.css"

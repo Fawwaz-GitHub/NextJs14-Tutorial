@@ -314,6 +314,20 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
 ### Middleware
 
+It Is Used To Guard The Protected Routes Which Should Accessed Only When Conditions Met
+
+- src
+    - middleware.js
+
+define config matcher for routes in middleware
+
+> it allows us to filter middleware ton run on specifc path. if we dont
+> add any matcher, middleware will be invoked for every route
+
+> middleware is independent from nodejs library hence we will create 
+> seperate auth.config file then will call it here
+
+In Callback The Conditions Can Be Written
 
 ## Functions And Tags Compare To React In NextJs
 
@@ -331,8 +345,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 - [Hydration_Error]
 - [Random-Token] - openssl rand -base 64 32
 - [OAuth] - Why Do We Need To Create An Account ?
-- [(...Spread.js)] - Why Do We Use This Spread For Pages
+- [(...Spread)] - Can Have Multiple Nested Routes api/auth/blogs/new/1
 - [NEXT_REDIRECT]
 
 ### Check Point
-04:20:00
+04:33:00
